@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { SignedIn, UserButton } from "@clerk/nextjs";
+import Image from "next/image";
 
 const Sidebar = () => {
   const pathname = usePathname();
@@ -24,7 +25,9 @@ const Sidebar = () => {
               })}
             >
               <div className="flex items-center justify-center gap-3">
-                <img
+                <Image
+                  width={10}
+                  height={10}
                   src={link.imgUrl}
                   alt={link.label}
                   className="w-5 invert"

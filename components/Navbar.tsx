@@ -4,6 +4,9 @@ import { useState } from "react";
 import { sidebarLinks } from "@/constants";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
+import { SignedIn, UserButton } from "@clerk/nextjs";
+
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
 
@@ -32,6 +35,11 @@ const Navbar = () => {
 
       <nav className="sticky">
         <div className="flex justify-center items-center bg-dark-3">
+          <div className="absolute left-5 hidden max-sm:block cursor-pointer pt-1">
+            <SignedIn>
+              <UserButton afterSignOutUrl="/login" />
+            </SignedIn>
+          </div>
           <div
             className={cn(
               "absolute right-5 hidden max-sm:block cursor-pointer",
@@ -43,13 +51,15 @@ const Navbar = () => {
           >
             <Menu size={35} />
           </div>
-          <div className="flex">
-            <img
+          <Link href="/" className="flex">
+            <Image
+              width={200}
+              height={50}
               src="/logo.png"
               alt="Connectify"
               className="w-44 lg:w-56 px-3 py-1"
             />
-          </div>
+          </Link>
         </div>
       </nav>
     </div>
