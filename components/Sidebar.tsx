@@ -3,12 +3,13 @@ import { sidebarLinks } from "@/constants";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <aside className="flex flex-col items-center justify-between w-fit bg-dark-1 p-3 pt-28 max-sm:hidden lg:w-[250px]">
+    <aside className="flex flex-col items-center justify-around w-fit h-[calc(100vh-10vh)] bg-dark-1 p-3 pt-28 max-sm:hidden lg:w-[250px]">
       <div className="flex flex-col items-center justify-center gap-4 w-full">
         {sidebarLinks.map((link) => {
           const isActive =
@@ -33,6 +34,20 @@ const Sidebar = () => {
             </Link>
           );
         })}
+      </div>
+      <div>
+        <Link
+          href="/login"
+          className="flex justify-center items-center hover:bg-dark-3 px-4 py-2 rounded-lg"
+        >
+          <Avatar>
+            <AvatarImage src="https://github.com/shdcn.png" />
+            <AvatarFallback className="text-dark-3 font-semibold">
+              AP
+            </AvatarFallback>
+          </Avatar>
+          <button className="flex w-full rounded-lg p-2">Logout</button>
+        </Link>
       </div>
     </aside>
   );
