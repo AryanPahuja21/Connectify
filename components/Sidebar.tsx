@@ -3,7 +3,7 @@ import { sidebarLinks } from "@/constants";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { SignedIn, UserButton } from "@clerk/nextjs";
 
 const Sidebar = () => {
   const pathname = usePathname();
@@ -36,18 +36,9 @@ const Sidebar = () => {
         })}
       </div>
       <div>
-        <Link
-          href="/login"
-          className="flex justify-center items-center hover:bg-dark-3 px-4 py-2 rounded-lg"
-        >
-          <Avatar>
-            <AvatarImage src="https://github.com/shdcn.png" />
-            <AvatarFallback className="text-dark-3 font-semibold">
-              AP
-            </AvatarFallback>
-          </Avatar>
-          <button className="flex w-full rounded-lg p-2">Logout</button>
-        </Link>
+        <SignedIn>
+          <UserButton afterSignOutUrl="/login" />
+        </SignedIn>
       </div>
     </aside>
   );
