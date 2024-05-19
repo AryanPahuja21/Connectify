@@ -5,12 +5,13 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { SignedIn, UserButton } from "@clerk/nextjs";
 import Image from "next/image";
+import { UsbIcon } from "lucide-react";
 
 const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <aside className="flex flex-col items-center justify-around w-fit h-[calc(100vh-10vh)] bg-dark-1 p-3 pt-28 max-sm:hidden lg:w-[250px]">
+    <aside className="flex flex-col items-center justify-around w-fit h-[calc(100vh-10vh)] bg-dark-1 p-3 max-sm:hidden lg:w-[250px]">
       <div className="flex flex-col items-center justify-center gap-4 w-full">
         {sidebarLinks.map((link) => {
           const isActive =
@@ -38,7 +39,7 @@ const Sidebar = () => {
           );
         })}
       </div>
-      <div>
+      <div className="flex items-center gap-2 border-4 border-dark-3 rounded-full">
         <SignedIn>
           <UserButton afterSignOutUrl="/login" />
         </SignedIn>
