@@ -74,6 +74,8 @@ const MeetingTypeList = () => {
     }
   };
 
+  const meetingLink = `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${callDetails?.id}`;
+
   return (
     <section className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
       <HomeCard
@@ -105,6 +107,56 @@ const MeetingTypeList = () => {
         handleClick={() => router.push("/recordings")}
       />
 
+      {!callDetails ? (
+        <MeetingModal
+          isOpen={meetingState === "isScheduleMeeting"}
+          onClose={() => setMeetingState(undefined)}
+          title="Create Meeting"
+          handleClick={createMeeting}
+        >
+          <div>
+            <p>Select Date and Time</p>
+            <input
+              type="datetime-local"
+              value={values.dateTime.toISOString().slice(0, 16)}
+              onChange={(e) =>
+                setValues((prev) => ({
+                  ...prev,
+                  dateTime: new Date(e.target.value),
+                }))
+              }
+              className="w-full p-2 border-2 border-gray-300 bg-dark-1 rounded-md"
+            />
+          </div>
+          <div>
+            <p>Description</p>
+            <textarea
+              value={values.description}
+              onChange={(e) =>
+                setValues((prev) => ({
+                  ...prev,
+                  description: e.target.value,
+                }))
+              }
+              className="w-full p-2 border-2 border-gray-300 bg-dark-1 rounded-md"
+            />
+          </div>
+        </MeetingModal>
+      ) : (
+        <MeetingModal
+          isOpen={meetingState === "isScheduleMeeting"}
+          onClose={() => setMeetingState(undefined)}
+          title="Meeting Created"
+          handleClick={() => {
+            navigator.clipboard.writeText(meetingLink);
+            toast({ title: "Link Copied" });
+          }}
+          image={"/icons/checked.svg"}
+          buttonIcon="/icons/copy.svg"
+          className="text-center"
+          buttonText="Copy Meeting Link"
+        />
+      )}
       <MeetingModal
         isOpen={meetingState === "isInstantMeeting"}
         onClose={() => setMeetingState(undefined)}
