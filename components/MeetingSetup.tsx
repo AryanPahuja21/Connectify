@@ -34,7 +34,7 @@ const MeetingSetup = ({
   return (
     <div className="flex h-screen w-full flex-col items-center justify-center gap-3 text-white">
       <h1 className="text-center text-2xl font-bold">Setup</h1>
-      <div className="w-[50vw] bg-dark-3 h-[28vw] flex justify-center items-center">
+      <div className="w-full flex justify-center items-center">
         <VideoPreview />
       </div>
       <div className="flex h-16 items-center justify-center gap-3">
@@ -49,7 +49,7 @@ const MeetingSetup = ({
         <DeviceSettings />
       </div>
       <Button
-        className="rounded-md bg-green-500 px-4 py-2.5"
+        className="rounded-md bg-green-500 hover:bg-green-400 px-4 py-2.5"
         onClick={() => {
           call.join();
 
