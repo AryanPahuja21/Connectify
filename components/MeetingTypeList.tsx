@@ -4,6 +4,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
+import { Input } from "./ui/input";
 
 import HomeCard from "./HomeCard";
 import MeetingModal from "./MeetingModal";
@@ -165,6 +166,16 @@ const MeetingTypeList = () => {
         buttonText="Start Meeting"
         handleClick={createMeeting}
       />
+      <MeetingModal
+        isOpen={meetingState === "isJoiningMeeting"}
+        onClose={() => setMeetingState(undefined)}
+        title="Enter the invitation link"
+        className="text-center"
+        buttonText="Join a Meeting"
+        handleClick={() => router.push(values.link)}
+      >
+        <Input placeholder="Meeting Link" className="bg-dark-3" />
+      </MeetingModal>
     </section>
   );
 };
