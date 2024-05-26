@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="favicon.png" alt="Connectify Logo" width="200">
+  <img src="./public/favicon.png" alt="Connectify Logo" width="200">
 </p>
 
 <h1 align="center">Connectify</h1>
